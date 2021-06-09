@@ -1,5 +1,5 @@
 {
-  "name": "react-leaflet-shapefile",
+  "name": "react-leaflet-shapefile-v2",
   "version": "2.0.0",
   "description": "React component for leaflet-shapefile",
   "main": "dist/react-leaflet-shapefile.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:Charmatzis/react-leaflet-shapefile.git"
+    "url": "git+https://github.com/TA-Geoforce/react-leaflet-shapefile.git"
   },
   "keywords": [
     "react",
