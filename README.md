@@ -26,5 +26,3 @@ import { ShapeFile } from "react-leaflet-shapefile"
 ```
 
 For more details on how to use this plugin check the [example](https://github.com/Charmatzis/react-leaflet-shapefile/tree/master/example).
-
-
