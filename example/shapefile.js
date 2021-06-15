@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, Circle, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
+import { MapContainer, Circle, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
 import JQuery from 'jquery'
 import {ShapeFile} from '../src'
 
@@ -66,14 +66,14 @@ export default class ShapefileExample extends React.Component {
         <div >
           <input type="file" onChange={this.handleFile.bind(this) } className="inputfile"/>
         </div>
-        <Map center={[42.09618442380296, -71.5045166015625]} zoom={2} zoomControl={true}>
+        <MapContainer center={[42.09618442380296, -71.5045166015625]} zoom={2} zoomControl={true}>
           <LayersControl position='topright'>
             <BaseLayer checked name='OpenStreetMap.Mapnik'>
               <TileLayer  url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
             </BaseLayer>
             {ShapeLayers}
           </LayersControl>
-        </Map>
+        </MapContainer>
       </div>
 
     )

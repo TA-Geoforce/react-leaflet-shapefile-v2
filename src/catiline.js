@@ -942,7 +942,5 @@ function initBrowser(catiline){
 
 if(typeof module === 'undefined' || !('exports' in module)){
 	initBrowser(catiline);
-} else {
-	module.exports=catiline;
 }catiline.version = '2.9.3';
 })(this);}

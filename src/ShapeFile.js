@@ -1,16 +1,12 @@
-import React, {PropTypes}  from 'react';
+import React  from 'react';
 import {Path} from 'react-leaflet';
 import Shapefile from './leaflet.shpfile';
 
-
-export default class ShapeFile extends Path {
-  static propTypes = {
-    data: PropTypes.object.isRequired
-  };
+export default class ShapeFile extends React.Component {
 
   componentWillMount() {
     super.componentWillMount();
-    const { data, map: _map, layerContainer: _lc, ...props, } = this.props;
+    const { data, map: _map, layerContainer: _lc, ...props } = this.props;
     this.leafletElement = L.shapefile(data, props); 
   }
  
