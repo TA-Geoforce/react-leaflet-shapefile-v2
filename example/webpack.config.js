@@ -11,7 +11,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   //specify the entry point for your project
-  entry: [ "./example/index.js"],
+  entry: ['babel-polyfill', "./example/index.js"],
   // specify the output file name
   output: {
     path: path.resolve(__dirname, "dist"),
