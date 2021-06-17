@@ -1,14 +1,12 @@
-import React, {useEffect}  from 'react';
-import Shapefile from './leaflet.shpfile';
+import React from 'react';
 import { GeoJSON } from 'react-leaflet'
 
-
-function ShapeFileExampleTest(data) {
+function ShapeFile(data) {
 
  return (
      <GeoJSON data={data.data}></GeoJSON>
  )
 
 }
-export default ShapeFileExampleTest
+export default ShapeFile
 
