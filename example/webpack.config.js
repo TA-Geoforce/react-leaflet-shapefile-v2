@@ -15,7 +15,7 @@ module.exports = {
   // specify the output file name
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js"
+    filename: "index.js",
   },
   module: {
     // consists the transform configuration
@@ -32,6 +32,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+      test: /\.(zip|jpe?g|gif)$/i,
+        use: ['file-loader']
       }
     ]
   },

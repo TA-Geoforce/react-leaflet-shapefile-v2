@@ -2,36 +2,25 @@ import React from 'react';
 import { MapContainer, Circle, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
 import JQuery from 'jquery'
 import {ShapeFile} from '../src'
-
+import * as shp from 'shpjs'
+import url from '../example/shp/TM_WORLD_BORDERS_SIMPL-0.3.zip'
 const { BaseLayer, Overlay } = LayersControl;
 
 
 export default class ShapefileExample extends React.Component {
-
-  constructor() {
-    super();
-    this.handleFile = this.handleFile.bind(this);
-    this.readerLoad = this.readerLoad.bind(this);
-
-
-
-    this.state = {
-      geodata: null,
-      isadded: false
+    state = {
+      geodata: null
     }
-  }
-
-
-  readerLoad(e) {
-    this.setState({ geodata: e.target.result });
-    this.setState({ isadded: true });
-  }
 
   handleFile(e) {
     var reader = new FileReader();
         var file = e.target.files[0];
-        reader.onload = function(upload) {
-          this.readerLoad(upload);
+        reader.onload = function(ee) {
+          var arrayBuffer = ee.target.result
+          var processedBuffer;
+          shp(arrayBuffer).then(function(data){
+            this.setState({ geodata: data });
+          }.bind(this))
         }.bind(this);
         reader.readAsArrayBuffer(file);
   }
@@ -46,20 +35,15 @@ export default class ShapefileExample extends React.Component {
 				}
 			}
 		
-
-
-
   render() {
     let ShapeLayers = null;
-    if (this.state.isadded === true) {
+    if (this.state.geodata !== null) {
       ShapeLayers = (<Overlay checked name='Feature group'>
         <FeatureGroup color='purple'>
           <ShapeFile data={this.state.geodata} onEachFeature={this.onEachFeature} isArrayBufer={true}/>
         </FeatureGroup>
       </Overlay>);
     }
-    
-    
 
     return (
       <div>
@@ -75,7 +59,6 @@ export default class ShapefileExample extends React.Component {
           </LayersControl>
         </MapContainer>
       </div>
-
     )
   }
 }

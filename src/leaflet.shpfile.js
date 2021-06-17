@@ -1,9 +1,8 @@
 'use strict';
 var cw = require('./catiline.js');
 //var shp = require('shp.js');
-//import * as cw from 'catiline';
+//import * as cw from './catiline';
 import * as shp from 'shpjs';
-
 
 /* global cw, shp */
 L.Shapefile = L.GeoJSON.extend({
