@@ -22,12 +22,12 @@
     "leaflet",
     "shapefile"
   ],
-  "author": "Christos Charmatzis",
+  "author": "T.A. Geoforce <info@tageoforce.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Charmatzis/react-leaflet-shapefile/issues"
+    "url": "https://github.com/TA-Geoforce/react-leaflet-shapefile-v2/issues"
   },
-  "homepage": "https://github.com/Charmatzis/react-leaflet-shapefile#readme",
+  "homepage": "https://github.com/TA-Geoforce/react-leaflet-shapefile-v2#readme",
   "peerDependencies": {
     "catiline": "2.9.3",
     "leaflet": "^1.7.1",

@@ -1,13 +1,12 @@
 import React from 'react';
-import { MapContainer, Circle, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
-import JQuery from 'jquery'
+import { MapContainer, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
 import {ShapeFile} from '../src'
 import * as shp from 'shpjs'
-import url from '../example/shp/TM_WORLD_BORDERS_SIMPL-0.3.zip'
+
 const { BaseLayer, Overlay } = LayersControl;
 
-
 export default class ShapefileExample extends React.Component {
+  
     state = {
       geodata: null
     }
@@ -15,9 +14,8 @@ export default class ShapefileExample extends React.Component {
   handleFile(e) {
     var reader = new FileReader();
         var file = e.target.files[0];
-        reader.onload = function(ee) {
-          var arrayBuffer = ee.target.result
-          var processedBuffer;
+        reader.onload = function(buffer) {
+          var arrayBuffer = buffer.target.result
           shp(arrayBuffer).then(function(data){
             this.setState({ geodata: data });
           }.bind(this))
@@ -48,7 +46,7 @@ export default class ShapefileExample extends React.Component {
     return (
       <div>
         <div >
-          <input type="file" onChange={this.handleFile.bind(this) } className="inputfile"/>
+          <input type="file" onChange={this.handleFile.bind(this)} className="inputfile"/>
         </div>
         <MapContainer center={[42.09618442380296, -71.5045166015625]} zoom={2} zoomControl={true}>
           <LayersControl position='topright'>
