@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapContainer, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
-import {ShapeFile} from '../src'
+import { ShapeFile } from '../src'
 import * as shp from 'shpjs'
 
 const { BaseLayer, Overlay } = LayersControl;
