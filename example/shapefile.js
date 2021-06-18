@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
 import { ShapeFile } from '../src'
-import * as shp from 'shpjs'
+
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -10,17 +10,18 @@ export default class ShapefileExample extends React.Component {
     state = {
       geodata: null
     }
+    
 
   handleFile(e) {
+    var data;
     var reader = new FileReader();
         var file = e.target.files[0];
         reader.onload = function(buffer) {
-          var arrayBuffer = buffer.target.result
-          shp(arrayBuffer).then(function(data){
-            this.setState({ geodata: data });
-          }.bind(this))
+          data = String.fromCharCode.apply(null, new Uint8Array(buffer.target.result));
+          
+          this.setState({ geodata: data });
         }.bind(this);
-        reader.readAsArrayBuffer(file);
+        reader.readAsArrayBuffer(file);      
   }
   
   onEachFeature(feature, layer) {
@@ -38,11 +39,10 @@ export default class ShapefileExample extends React.Component {
     if (this.state.geodata !== null) {
       ShapeLayers = (<Overlay checked name='Feature group'>
         <FeatureGroup color='purple'>
-          <ShapeFile data={this.state.geodata} onEachFeature={this.onEachFeature} isArrayBufer={true}/>
+          <ShapeFile data={this.state.geodata} onEachFeature={this.onEachFeature}/>
         </FeatureGroup>
       </Overlay>);
     }
-
     return (
       <div>
         <div >
