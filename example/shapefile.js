@@ -15,7 +15,6 @@ export default class ShapefileExample extends React.Component {
     var file = e.target.files[0];
     reader.readAsArrayBuffer(file);  
     this.setState({ geodata: reader });   
-    console.log(reader)
   }
   
   onEachFeature(feature, layer) {
