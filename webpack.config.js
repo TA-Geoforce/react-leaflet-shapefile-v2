@@ -7,9 +7,27 @@ module.exports = {
 			amd: 'react-leaflet-ShapeFile',
 			commonjs: 'react-leaflet-ShapeFile'
 		},
-		libraryExport: 'default',
-		libraryTarget: 'umd'
-	},
+        libraryExport: 'default',
+        libraryTarget: 'umd'
+    },
+    externals: {
+        debug: 'debug',
+        leaflet: {
+            commonjs: 'leaflet',
+            commonjs2: 'leaflet',
+            root: 'L'
+        },
+        'react-leaflet': {
+            commonjs: 'react-leaflet',
+            commonjs2: 'react-leaflet',
+            root: 'ReactLeaflet'
+        },
+        react: {
+            commonjs: 'react',
+            commonjs2: 'react',
+            root: 'React'
+        }
+    },
 	externals: {
 		debug: 'debug',
 	},

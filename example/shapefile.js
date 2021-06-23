@@ -2,38 +2,32 @@ import React from 'react';
 import { MapContainer, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
 import { ShapeFile } from '../src'
 
-
 const { BaseLayer, Overlay } = LayersControl;
 
 export default class ShapefileExample extends React.Component {
   
-    state = {
-      geodata: null
-    }
-    
+  state = {
+    geodata: null
+  }
 
   handleFile(e) {
-    var data;
     var reader = new FileReader();
-        var file = e.target.files[0];
-        reader.onload = function(buffer) {
-          data = String.fromCharCode.apply(null, new Uint8Array(buffer.target.result));
-          
-          this.setState({ geodata: data });
-        }.bind(this);
-        reader.readAsArrayBuffer(file);      
+    var file = e.target.files[0];
+    reader.readAsArrayBuffer(file);  
+    this.setState({ geodata: reader });   
+    console.log(reader)
   }
   
   onEachFeature(feature, layer) {
-				if (feature.properties) {
-					layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-						return k + ": " + feature.properties[k];
-					}).join("<br />"), {
-						maxHeight: 200
-					});
-				}
-			}
-		
+    if (feature.properties) {
+      layer.bindPopup(Object.keys(feature.properties).map(function(k) {
+        return k + ": " + feature.properties[k];
+      }).join("<br />"), {
+        maxHeight: 200
+      });
+    }
+  }
+    
   render() {
     let ShapeLayers = null;
     if (this.state.geodata !== null) {

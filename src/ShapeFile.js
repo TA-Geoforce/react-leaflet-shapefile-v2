@@ -1,27 +1,24 @@
 import React, { useEffect, useState} from 'react';
 import { GeoJSON } from 'react-leaflet'
-import * as shp from 'shpjs'
+import shp from 'shpjs'
 
-function ShapeFile(arrayBuffer) {
-
+function ShapeFile(props) {
     const [ data, setData ] = useState(null)
-    var buf = new ArrayBuffer(arrayBuffer.data.length*2); 
-    var bufView = new Uint8Array(buf);
+
     useEffect(() => {
-        for(var i=0, strLen=arrayBuffer.data.length; i < strLen; i++) {
-            bufView[i] = arrayBuffer.data.charCodeAt(i);
+        props.data.onload = function(buffer) {
+            shp(buffer.target.result).then(function(dataConverted){
+                setData(dataConverted) 
+            }) 
         }
-        shp(bufView).then(function(dataConverted){
-            setData(dataConverted)
-        })    
     },[])
+
  return (
-     <div>
+    <div>
         {data !== null ? 
-            <GeoJSON data={data}></GeoJSON>
+            <GeoJSON data = {data} />
         :null}
     </div>
  )
 }
 export default ShapeFile
-
