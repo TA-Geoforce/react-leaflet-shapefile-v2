@@ -26,13 +26,23 @@ export default class ShapefileExample extends React.Component {
       });
     }
   }
-    
+  
+  style() {
+    return ({
+      weight: 2,
+      opacity: 1,
+      color: "blue",
+      dashArray: "3",
+      fillOpacity: 0.7
+    });
+  }
+
   render() {
     let ShapeLayers = null;
     if (this.state.geodata !== null) {
       ShapeLayers = (<Overlay checked name='Feature group'>
         <FeatureGroup color='purple'>
-          <ShapeFile data={this.state.geodata} onEachFeature={this.onEachFeature}/>
+          <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature}/>
         </FeatureGroup>
       </Overlay>);
     }
@@ -44,7 +54,7 @@ export default class ShapefileExample extends React.Component {
         <MapContainer center={[42.09618442380296, -71.5045166015625]} zoom={2} zoomControl={true}>
           <LayersControl position='topright'>
             <BaseLayer checked name='OpenStreetMap.Mapnik'>
-              <TileLayer  url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
+              <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
             </BaseLayer>
             {ShapeLayers}
           </LayersControl>
