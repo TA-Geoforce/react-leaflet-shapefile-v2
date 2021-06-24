@@ -5,6 +5,11 @@ import shp from 'shpjs'
 function ShapeFile(props) {
   const [ data, setData ] = useState(null)
 
+  const geoJSONProps= {
+    style: props.style,
+    onEachFeature: props.onEachFeature
+  }
+
   useEffect(() => {
       props.data.onload = function(buffer) {
           shp(buffer.target.result).then(function(dataConverted){
@@ -17,7 +22,7 @@ function ShapeFile(props) {
     <div>
         {data !== null ? 
           <div>
-            <GeoJSON data = {data} style = {props.style} onEachFeature = {props.onEachFeature} />
+            <GeoJSON data = {data} {...geoJSONProps} />
           </div>
         :null}
     </div>
