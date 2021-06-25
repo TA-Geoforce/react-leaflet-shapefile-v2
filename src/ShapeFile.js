@@ -19,7 +19,7 @@ function ShapeFile(props) {
     <div>
         {geoJSONData !== null ? 
           <div>
-            <GeoJSON data = {geoJSONData} {...geoJSONProps} />
+            <GeoJSON className="testthis"data = {geoJSONData} {...geoJSONProps} />
           </div>
         :null}
     </div>
