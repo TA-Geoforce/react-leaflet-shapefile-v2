@@ -89,5 +89,3 @@ You can find the following example in the folder ```example```. Run the above co
 1) ```build```
 
 1) ```example```
-
-For more details on how to use this plugin check the [example](https://github.com/Charmatzis/react-leaflet-shapefile/tree/master/example).

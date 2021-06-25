@@ -4,23 +4,25 @@ import shp from 'shpjs'
 
 function ShapeFile(props) {
   const [ geoJSONData, setGeoJSONData ] = useState(null)
+  const [ geoJSONStateProps, setGeoJSONStateProps ] = useState({})
+  const { data, uniqueId, ...geoJSONProps} = props
   
-  const { data, ...geoJSONProps} = props
-
   useEffect(() => {
-      props.data.onload = function(buffer) {
-          shp(buffer.target.result).then(function(dataConverted){
-            setGeoJSONData(dataConverted) 
-          }) 
-      } 
-  },[])
+    shp(props.data).then(function(dataConverted){
+      setGeoJSONData(dataConverted) 
+    })
+    geoJSONProps.key = props.uniqueId
+    setGeoJSONStateProps(geoJSONProps)
+  },[props.data, props.uniqueId])
 
  return (
-    <div>
-        {geoJSONData !== null ? 
-          <GeoJSON data = {geoJSONData} {...geoJSONProps} />
-        :null}
-    </div>
- )
+  <div>
+    {
+      geoJSONData !== null ?
+        <GeoJSON data = {geoJSONData} {...geoJSONStateProps} />    
+      :null
+    }
+  </div> 
+)
 }
 export default ShapeFile

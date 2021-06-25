@@ -5,16 +5,20 @@ import { ShapeFile } from '../src'
 const { BaseLayer, Overlay } = LayersControl;
 
 export default class ShapefileExample extends React.Component {
-  
+
   state = {
-    geodata: null
+    geodata: null,
+    increment: 0
   }
 
   handleFile(e) {
     var reader = new FileReader();
     var file = e.target.files[0];
-    reader.readAsArrayBuffer(file);  
-    this.setState({ geodata: reader });   
+    reader.readAsArrayBuffer(file);
+    reader.onload = function(buffer) {
+      this.setState({ geodata: buffer.target.result });
+      this.setState({ increment: this.state.increment + 1 });
+    }.bind(this)
   }
   
   onEachFeature(feature, layer) {
@@ -40,9 +44,10 @@ export default class ShapefileExample extends React.Component {
   render() {
     let ShapeLayers = null;
     if (this.state.geodata !== null) {
-      ShapeLayers = (<Overlay checked name='Feature group'>
+      ShapeLayers = (
+      <Overlay checked name='Feature group'>
         <FeatureGroup color='purple'>
-          <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature}/>
+          <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature} uniqueId = {this.state.increment}/>
         </FeatureGroup>
       </Overlay>);
     }
