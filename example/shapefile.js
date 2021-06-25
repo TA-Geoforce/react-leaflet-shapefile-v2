@@ -46,9 +46,7 @@ export default class ShapefileExample extends React.Component {
     if (this.state.geodata !== null) {
       ShapeLayers = (
       <Overlay checked name='Feature group'>
-        <FeatureGroup color='purple'>
           <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature} uniqueId = {this.state.increment}/>
-        </FeatureGroup>
       </Overlay>);
     }
     return (
