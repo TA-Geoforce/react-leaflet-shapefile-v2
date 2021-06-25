@@ -16,13 +16,8 @@ function ShapeFile(props) {
   },[props.data, props.uniqueId])
 
  return (
-  <div>
-    {
-      geoJSONData !== null ?
-        <GeoJSON data = {geoJSONData} {...geoJSONStateProps} />    
-      :null
-    }
-  </div> 
+  <GeoJSON data = {geoJSONData} {...geoJSONStateProps} />    
 )
+
 }
 export default ShapeFile
