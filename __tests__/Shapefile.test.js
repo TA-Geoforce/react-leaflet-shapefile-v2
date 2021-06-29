@@ -67,10 +67,11 @@ describe("Check if shape file component renders", () => {
             </MapContainer>
         )
       
-       await act(async () => {
+    await act(async () => {
         await Promise.resolve();
         wrapper.update()
-        });
+    });
+    
     expect((wrapper).find(GeoJSON).prop('data')).toEqual(Polygon);
     expect((wrapper).find(GeoJSON).prop('onEachFeature')).toEqual(emptyFunction);
     })
