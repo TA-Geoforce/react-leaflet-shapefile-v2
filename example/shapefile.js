@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, LayersControl, FeatureGroup } from 'react-leaflet'
+import { MapContainer, TileLayer, LayersControl } from 'react-leaflet'
 import { ShapeFile } from '../src'
 
 const { BaseLayer, Overlay } = LayersControl;
@@ -46,7 +46,7 @@ export default class ShapefileExample extends React.Component {
     if (this.state.geodata !== null) {
       ShapeLayers = (
       <Overlay checked name='Feature group'>
-          <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature} uniqueId = {this.state.increment}/>
+          <ShapeFile data={this.state.geodata} style={this.style} onEachFeature={this.onEachFeature}/>
       </Overlay>);
     }
     return (
