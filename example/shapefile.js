@@ -17,7 +17,6 @@ export default class ShapefileExample extends React.Component {
     reader.readAsArrayBuffer(file);
     reader.onload = function(buffer) {
       this.setState({ geodata: buffer.target.result });
-      this.setState({ increment: this.state.increment + 1 });
     }.bind(this)
   }
   

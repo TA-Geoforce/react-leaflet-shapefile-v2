@@ -62,7 +62,7 @@ describe("Check if shape file component renders", () => {
         const wrapper = mount(
             <MapContainer>
                 <Overlay checked name='Feature group'>
-                    <ShapeFile data={Polygon} onEachFeature={emptyFunction}/>
+                    <ShapeFile data={new ArrayBuffer(10)} onEachFeature={emptyFunction}/>
                 </Overlay>
             </MapContainer>
         )
