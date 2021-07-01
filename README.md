@@ -86,6 +86,7 @@ export default class ShapefileExample extends React.Component {
   }
 }
 ```
+
 You can find the following example in the folder ```example```. Run the above code by executing the following scripts in package.json, with the order they are stated underneath:
 
 1) ```build```
