@@ -1,23 +1,19 @@
-import React, {PropTypes}  from 'react';
-import {Path} from 'react-leaflet';
-import Shapefile from './leaflet.shpfile';
+import React, { useEffect, useState } from 'react';
+import { GeoJSON } from 'react-leaflet'
+import shp from 'shpjs'
 
+const ShapeFile = (props) => {
+  const [ geoJSONData, setGeoJSONData ] = useState(null)
+  const { data, ...geoJSONProps} = props
 
-export default class ShapeFile extends Path {
-  static propTypes = {
-    data: PropTypes.object.isRequired
-  };
+  useEffect(async () => {
+    setGeoJSONData(await shp(props.data))
+  }, [props.data])
 
-  componentWillMount() {
-    super.componentWillMount();
-    const { data, map: _map, layerContainer: _lc, ...props, } = this.props;
-    this.leafletElement = L.shapefile(data, props); 
-  }
- 
-   componentDidUpdate(prevProps) {
-   //todo
-    
-     this.setStyleIfChanged(prevProps, this.props);
-  }
+ return (
+  <GeoJSON key = {Math.random()} data = {geoJSONData} {...geoJSONProps}/>
+  )
+
 }
 
+export default ShapeFile

@@ -1,43 +1,54 @@
-/* eslint-disable */
-var webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+var path = require("path");
+
+// this will create index.html file containing script
+// source in dist folder dynamically
+const htmlPlugin = new HtmlWebPackPlugin({
+  template: "./example/index.html",
+  filename: "./index.html"
+});
 
 module.exports = {
-  debug: true,
-  devtool: 'source-map',
-  entry: {
-    app: __dirname + '/index.js'
+  //specify the entry point for your project
+  entry: ['babel-polyfill', "./example/index.js"],
+  // specify the output file name
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "index.js",
   },
   module: {
-    loaders: [
+    // consists the transform configuration
+    rules: [
       {
-        test: /\.js$/,   exclude: /node_modules/,  loader: 'babel'
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+      test: /\.(zip|jpe?g|gif)$/i,
+        use: ['file-loader']
       }
     ]
   },
-  output: {
-    path: __dirname + '/build/',
-    filename: '[name].js',
-    publicPath: 'http://localhost:8000/build'
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': '"development"'
-      }
-    }),
-    new webpack.NoErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  // this will create a development server to host our application
+  // and will also provide live reload functionality
   devServer: {
-    colors: true,
-    contentBase: __dirname,
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    port: 8000,
-    progress: true,
-    stats: {
-      cached: false
-    }
-  }
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 3001
+  },
+
+  // this will watch the bundle for any changes
+  watch: true,
+  // specify the plugins which you are using
+  plugins: [htmlPlugin]
 };
