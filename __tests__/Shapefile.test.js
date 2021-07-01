@@ -66,12 +66,12 @@ describe("Check if shape file component renders", () => {
                 </Overlay>
             </MapContainer>
         )
-      
+    expect(shp).toHaveBeenCalledWith(new ArrayBuffer(10))
     await act(async () => {
         await Promise.resolve();
         wrapper.update()
     });
-    
+    expect((wrapper).find(ShapeFile).prop('data')).toEqual(new ArrayBuffer(10));
     expect((wrapper).find(GeoJSON).prop('data')).toEqual(Polygon);
     expect((wrapper).find(GeoJSON).prop('onEachFeature')).toEqual(emptyFunction);
     })
