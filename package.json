@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-shapefile-v2",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "React component for leaflet-shapefile",
   "main": "dist/react-leaflet-shapefile.js",
   "scripts": {
