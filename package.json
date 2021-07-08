@@ -2,7 +2,7 @@
   "name": "react-leaflet-shapefile-v2",
   "version": "3.0.0",
   "description": "React component for leaflet-shapefile",
-  "main": "dist/react-leaflet-shapefile.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "clean:lib": "rmdir /s ./lib",
@@ -11,6 +11,7 @@
     "build:dist": "webpack src/index.js dist/react-leaflet-shapefile.js & webpack -p src/index.js dist/react-leaflet-shapefile.min.js",
     "build": "npm run build:lib && npm run build:dist",
     "example": "webpack-dev-server --config ./example/webpack.config.js",
+    "prepublishOnly": "npm run build",
     "lint": "eslint ./src"
   },
   "repository": {
