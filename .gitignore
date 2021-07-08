@@ -5,6 +5,9 @@ npm-debug.log*
 
 .vscode
 
+# webpack generated
+dist
+lib
 # Runtime data
 pids
 *.pid
