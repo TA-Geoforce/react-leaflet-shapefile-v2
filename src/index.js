@@ -1,1 +1,1 @@
-export ShapeFile from "./ShapeFile";
+export { default as ShapeFile } from "./ShapeFile";
