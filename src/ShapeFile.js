@@ -6,8 +6,11 @@ const ShapeFile = (props) => {
   const [ geoJSONData, setGeoJSONData ] = useState(null)
   const { data, ...geoJSONProps} = props
 
-  useEffect(async () => {
-    setGeoJSONData(await shp(props.data))
+  useEffect(() => {
+    const parseData = async () => {
+      setGeoJSONData(await shp(props.data))
+    }
+    parseData();
   }, [props.data])
 
  return (
